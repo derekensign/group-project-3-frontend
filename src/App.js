@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Home from './views/Home'
 import Signup from './components/forms/Signup'
 import Login from './components/forms/Login'
+import Products from './views/Products'
 
 function App() {
     const { userState, fetchUser } = useContext(GlobalStore)
@@ -30,6 +31,10 @@ function App() {
 
         <Route exact path="/login">
           <Login />
+        </Route>
+
+        <Route exact path = '/products'>
+          <Products />
         </Route>
 
       </div>
