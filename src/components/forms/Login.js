@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GlobalStore } from '../contexts/GlobalStore'
+import { GlobalStore } from '../../contexts/GlobalStore'
 import { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 
@@ -9,7 +9,8 @@ function Login() {
     const [inputs, setInputs] = useState({})
     const [redirect, setRedirect] = useState(false)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND}/users/login`, inputs)
             console.log('login response', response)

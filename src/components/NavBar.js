@@ -21,11 +21,11 @@ function NavBar() {
                     Shop
                 </Link>
                 
-                <Link to="/users/signup" className="navLink">
+                <Link to="/signup" className="navLink">
                     Signup
                 </Link>
                 
-                <Link to="/users/login" className="navLink">
+                <Link to="/login" className="navLink">
                     Login
                 </Link>
 
