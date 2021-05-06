@@ -11,7 +11,7 @@ function Signup() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/users/signup`, inputs)
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND}/users/`, inputs)
             console.log('signup response', response)
             // if (response.data) {
             //     localStorage.setItem('userId', response.data.user.id)
