@@ -35,6 +35,7 @@ function NavBar() {
                 >
                     Account
                 </span>
+                
                 {drop && 
                 <span className="accountDropDown">
                     <Link
