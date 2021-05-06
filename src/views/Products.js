@@ -1,8 +1,12 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+
+import ProductCard from '../components/ProductCard'
 
 const Products = () => {
     const [allProducts, setAllProducts] = useState([])
+    const [redirect, setRedirect] = useState('')
 
     const fetchProducts = () => {
         axios.get(`${process.env.REACT_APP_BACKEND}/products`)
@@ -17,21 +21,20 @@ const Products = () => {
     const productList = (arr) => {
         return (
            arr.map(product => (
-                <div>
-                   <h1>
-                    {product.name}
-                   </h1>
-                   <p>
-                    {product.price}
-                   </p>
-                   <img src = {product.image} ></img>
-                </div>
+                <ProductCard
+                    // key={product.id}
+                    product={product}
+                    setRedirect={setRedirect}
+                />
            )) 
         )
     }
 
     return (
         <div className = 'view productsView'>
+
+            {redirect && <Redirect to={`/products/${redirect}`} />}
+
             {productList(allProducts)}
         </div>
     )
