@@ -15,7 +15,7 @@ const Provider = ({children}) => {
             }
         })
             .then(res => {
-                console.log('fetchUser res', res)
+                // console.log('fetchUser res', res)
                 if (res.data.user) {
                     console.log('user verified', res.data.user);
                     setUser(res.data.user)

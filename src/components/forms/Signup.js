@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GlobalStore } from '../contexts/GlobalStore'
+import { GlobalStore } from '../../contexts/GlobalStore'
 import { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 
@@ -9,15 +9,16 @@ function Signup() {
     const [inputs, setInputs] = useState({})
     const [redirect, setRedirect] = useState(false)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault()
         try {
             const response = await axios.post(`${process.env.REACT_APP_BACKEND}/users/`, inputs)
             console.log('signup response', response)
-            // if (response.data) {
-            //     localStorage.setItem('userId', response.data.user.id)
-            //     setUser(response.data.user)
-            //     setRedirect(true)
-            // }
+            if (response.data) {
+                localStorage.setItem('userId', response.data.user.id)
+                setUser(response.data.user)
+                setRedirect(true)
+            }
         } catch (error) {
             console.error(error)
         }

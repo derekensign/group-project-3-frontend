@@ -1,7 +1,12 @@
 import './App.css';
 import { GlobalStore } from './contexts/GlobalStore'
 import { useEffect, useContext } from 'react'
+import { Route } from 'react-router-dom'
+
 import NavBar from './components/NavBar';
+import Home from './views/Home'
+import Signup from './components/forms/Signup'
+import Login from './components/forms/Login'
 
 function App() {
     const { userState, fetchUser } = useContext(GlobalStore)
@@ -14,6 +19,19 @@ function App() {
     return (
       <div className="App">
         <NavBar />
+
+        <Route exact path="/">
+          <Home />
+        </Route>
+
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+
+        <Route exact path="/login">
+          <Login />
+        </Route>
+
       </div>
     );
 }
