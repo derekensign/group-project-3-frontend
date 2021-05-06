@@ -7,9 +7,8 @@ function App() {
     const { userState, fetchUser } = useContext(GlobalStore)
     const [user, setUser] = userState
     
-    let local = localStorage.getItem('userId')
     useEffect(() => {
-      if (local) {fetchUser()}
+      fetchUser()
     }, [])
 
     return (
