@@ -1,0 +1,25 @@
+.navBar {
+    background-color: aquamarine;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navLink {
+    margin: 0 20px;
+    cursor: pointer;
+}
+.dropDownBtn {
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.accountDropDown {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 50px;
+}
