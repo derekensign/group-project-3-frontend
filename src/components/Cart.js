@@ -51,7 +51,9 @@ const Cart = () => {
       }, []);
       const handleClick = async (event) => {
         const stripe = await stripePromise;
-        const response = await axios.post(`${process.env.REACT_APP_BACKEND}/create-checkout-session`)
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND}/create-checkout-session`, {
+            cart
+        })
         console.log(response);
         const session = await response.data;
         // When the customer clicks on the button, redirect them to Checkout.
