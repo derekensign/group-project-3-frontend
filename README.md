@@ -12,11 +12,11 @@ Out group is building an e-commerce site. We will be using an express/postgres b
 
 ## Core Goals
 - [x] When I first visit the site, I'm on a home page that just has a simple welcome message.
-- [] When not logged in, I see links to home, signup & login only. 
-    -[] If I were to visit any of these routes manually while logged in, I would get redirected to the home page.
-- [] I can create an account, log in, and log out. The stretch goals from https://github.com/SEI-ATL-3-8/auth-replay are all implemented.
-- [] When logged in, I see links to home, logout, All Products, My Cart, and My Orders.
-    - [] If I were to visit any of these routes manually while logged out, I would get redirected to the home page.
+- [x] When not logged in, I see links to home, signup & login only. 
+    -[x] If I were to visit any of these routes manually while logged in, I would get redirected to the home page.
+- [x] I can create an account, log in, and log out. The stretch goals from https://github.com/SEI-ATL-3-8/auth-replay are all implemented.
+- [x] When logged in, I see links to home, logout, All Products, My Cart, and My Orders.
+    - [x] If I were to visit any of these routes manually while logged out, I would get redirected to the home page.
 - [x] The All Products page lists the names of all available products. 
     - [x] Clicking on any product name takes me to its details page, which include a name, description, image, and price. The products are pre-seeded in the db. 
     - [x] In the Product Details page is an Add To Cart button, which saves the product in my cart. 

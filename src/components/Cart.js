@@ -86,6 +86,19 @@ const Cart = () => {
     }
     
     useEffect(fetchCart, [user])
+
+    const removeFromCart = (id) => {
+        console.log(id)
+        axios.delete(`${process.env.REACT_APP_BACKEND}/users/cart/${id}`)
+        .then(res => {
+            console.log(`delete res`, res)
+            fetchCart()
+        })
+        .catch(error => {
+            console.error(error)
+        })
+
+    }
     
     useEffect(() => {
         const sum = cart.reduce((total, item) => {
@@ -103,14 +116,12 @@ const Cart = () => {
                 <div className="itemRow">
                     <p>{item.name}</p>
                     <p>${item.price}</p>
+                    <p onClick={() => removeFromCart(item.cartId)}>X</p>
                 </div>
             ))}
             <h3 className="cartTotal">Total: $
                 <span className="sum">{cartTotal.sum}</span>
             </h3>
-            {/* <h3 className="cartTotal">Tax: $
-                <span className="tax">{cartTotal.tax}</span>
-            </h3> */}
             <button type="button" id="checkout-button" role="link" onClick={handleClick}>
                 Checkout
             </button>
