@@ -5,23 +5,23 @@ import { GlobalStore } from '../contexts/GlobalStore'
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe("pk_test_51IoVLqKFmp10dkyrMj47nEMrxI2JTKR7IT9fmkWKmW1jRIbc1LFYCIoz1c6vi58hsDyLhBIMEmemif5XYnDrc5rG00dlfSDkpI")
-const ProductDisplay = ({ handleClick }) => (
-    <section>
-        <div className="product">
-            <img
-            src="https://i.imgur.com/EHyR2nP.png"
-            alt="The cover of Stubborn Attachments"
-            />
-            <div className="description">
-            <h3>Stubborn Attachments</h3>
-            <h5>$20.00</h5>
-            </div>
-        </div>
-        <button type="button" id="checkout-button" role="link" onClick={handleClick}>
-            Checkout
-        </button>
-    </section>
-);
+// const ProductDisplay = ({ handleClick }) => (
+//     <section>
+//         <div className="product">
+//             <img
+//             src="https://i.imgur.com/EHyR2nP.png"
+//             alt="The cover of Stubborn Attachments"
+//             />
+//             <div className="description">
+//             <h3>Stubborn Attachments</h3>
+//             <h5>$20.00</h5>
+//             </div>
+//         </div>
+//         <button type="button" id="checkout-button" role="link" onClick={handleClick}>
+//             Checkout
+//         </button>
+//     </section>
+// );
 const Message = ({ message }) => (
     <section>
         <p>{message}</p>
@@ -54,48 +54,20 @@ const Cart = () => {
         const response = await axios.post(`${process.env.REACT_APP_BACKEND}/create-checkout-session`, {
             cart
         })
-        console.log(response);
+        // console.log(response);
         const session = await response.data;
         // When the customer clicks on the button, redirect them to Checkout.
         const result = await stripe.redirectToCheckout({
           sessionId: session.id,
         });
+        console.log('payment result', result);
         if (result.error) {
           // If `redirectToCheckout` fails due to a browser or network
           // error, display the localized error message to your customer
           // using `result.error.message`.
+          alert(result.error.message)
         }
       };
-
-    // let cardInfo = {
-    //     card: {
-    //         number: '4242424242424242',
-    //         exp_month: '02',
-    //         exp_year: '21',
-    //         cvc: '999',
-    //         name: 'Billy Joe'
-    //     }
-    // }
-
-    // const onPayment = () => {
-    //     // const card = stripe.createToken(cardInfo)
-    //     // const token = card.id
-    //     // send token to backend
-    //     axios.post(`${process.env.REACT_APP_BACKEND}/create-checkout-session`)
-    //         .then(res => res)
-    //         .then(session => {
-    //             console.log(session.data);
-    //             stripe.redirectToCheckout({sessionId: session.data.id})
-    //         })
-    //         .then(result => {
-    //             if (result.error) {
-    //               alert(result.error.message);
-    //             }
-    //         })
-    //         .catch(error => {
-    //         console.error("Error:", error);
-    //         })
-    // }
     
     const fetchCart = () => {
         console.log(user.id)
@@ -145,23 +117,9 @@ const Cart = () => {
         </div>
         {message ? 
             <Message message={message} />
-        :
-            <ProductDisplay handleClick={handleClick} />
+        : null
+            // <ProductDisplay handleClick={handleClick} />
         }
-        {/* <div className="checkoutForm">
-            <form id="payment-form">
-                <div id="card-element">Stripe.js injects the Card Element</div>
-                <button id="submit">
-                    <div class="spinner hidden" id="spinner"></div>
-                    <span id="button-text">Pay now</span>
-                </button>
-                <p id="card-error" role="alert"></p>
-                <p class="result-message hidden">
-                    Payment succeeded, see the result in your
-                    <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
-                </p>
-            </form>
-        </div> */}
         </>
     )
 }
