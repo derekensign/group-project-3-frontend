@@ -1,21 +1,25 @@
 .accountWrapper {
+    border: 1px solid red;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     width: 90%;
     min-height: 100vh;
+    margin: 0 auto;
+    padding: 50px 0;
 }
 .cartOrderContainer {
+    border: 1px solid red;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 75%;
-    height: 100%;
 }
 .accountContainer {
+    border: 1px solid red;
     border-radius: 10px;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
     width: 20%;
-    height: 100%;
+    min-height: 90vh;
 }

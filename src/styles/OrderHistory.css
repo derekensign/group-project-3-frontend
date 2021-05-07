@@ -1,0 +1,6 @@
+.orderContainer {
+    border: 1px solid blue;
+    width: 100%;
+    min-height: 30vh;
+    margin-top: 50px;
+}

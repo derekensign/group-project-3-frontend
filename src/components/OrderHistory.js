@@ -1,6 +1,8 @@
+import '../styles/OrderHistory.css'
+
 const OrderHistory = () => {
     return (
-        <div>
+        <div className="orderContainer">
             Order History goes here
         </div>
     )

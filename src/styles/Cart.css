@@ -1,0 +1,21 @@
+.cartContainer {
+    border: 1px solid blue;
+    width: 100%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+}
+.itemRow {
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 10px auto 0 auto;
+    padding: 0 10px;
+}
+.cartTotal {
+    /* align-self: flex-end; */
+    /* justify-self: flex-end; */
+    margin: 20px;
+}
