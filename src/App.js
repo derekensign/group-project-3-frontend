@@ -1,7 +1,7 @@
 import './App.css';
 import { GlobalStore } from './contexts/GlobalStore'
 import { useEffect, useContext } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import NavBar from './components/NavBar';
 import Home from './views/Home'
@@ -29,15 +29,24 @@ function App() {
         </Route>
 
         <Route exact path="/signup">
-          <Signup />
+          {user.id ? 
+            <Redirect to="/"/>
+            : 
+            <Signup />}
         </Route>
 
         <Route exact path="/login">
-          <Login />
+        {user.id ? 
+            <Redirect to="/"/>
+            : 
+            <Login  />}
         </Route>
 
         <Route exact path="/account">
-          <Account />
+          {user.id ? 
+              <Account />
+              : 
+              <Redirect to="/login"/>}
         </Route>
 
         <Route exact path = '/products'>
@@ -46,10 +55,6 @@ function App() {
 
         <Route exact path = '/products/:id'>
           <ShowProduct />
-        </Route>
-
-        <Route exact path="/checkout">
-          <Checkout />
         </Route>
 
       </div>
