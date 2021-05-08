@@ -5,23 +5,7 @@ import { GlobalStore } from '../contexts/GlobalStore'
 import { loadStripe } from "@stripe/stripe-js";
 
 const stripePromise = loadStripe("pk_test_51IoVLqKFmp10dkyrMj47nEMrxI2JTKR7IT9fmkWKmW1jRIbc1LFYCIoz1c6vi58hsDyLhBIMEmemif5XYnDrc5rG00dlfSDkpI")
-// const ProductDisplay = ({ handleClick }) => (
-//     <section>
-//         <div className="product">
-//             <img
-//             src="https://i.imgur.com/EHyR2nP.png"
-//             alt="The cover of Stubborn Attachments"
-//             />
-//             <div className="description">
-//             <h3>Stubborn Attachments</h3>
-//             <h5>$20.00</h5>
-//             </div>
-//         </div>
-//         <button type="button" id="checkout-button" role="link" onClick={handleClick}>
-//             Checkout
-//         </button>
-//     </section>
-// );
+
 const Message = ({ message }) => (
     <section>
         <p>{message}</p>
@@ -29,9 +13,9 @@ const Message = ({ message }) => (
 );
   
 const Cart = () => {
-    const { userState } = useContext(GlobalStore)
+    const { userState, cartState, fetchCart } = useContext(GlobalStore)
     const [user, setUser] = userState
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = cartState
     const [cartTotal, setCartTotal] = useState({})
     const [inputs, setInputs] = useState({})
     const [message, setMessage] = useState("");
@@ -48,8 +32,9 @@ const Cart = () => {
             "Order canceled -- continue to shop around and checkout when you're ready."
           );
         }
-      }, []);
-      const handleClick = async (event) => {
+    }, []);
+
+    const handleClick = async (event) => {
         const stripe = await stripePromise;
         const response = await axios.post(`${process.env.REACT_APP_BACKEND}/create-checkout-session`, {
             cart
@@ -67,23 +52,7 @@ const Cart = () => {
           // using `result.error.message`.
           alert(result.error.message)
         }
-      };
-    
-    const fetchCart = () => {
-        console.log(user.id)
-        axios.get(`${process.env.REACT_APP_BACKEND}/users/cart`, {
-            headers: {
-                Authorization: user.id
-            }
-        })
-        .then(res => {
-            console.log('fetchCart res', res);
-            setCart(res.data.products)
-        })
-        .catch(error => {
-            console.error(error);
-        })
-    }
+    };
     
     useEffect(fetchCart, [user])
 
@@ -128,8 +97,8 @@ const Cart = () => {
         </div>
         {message ? 
             <Message message={message} />
-        : null
-            // <ProductDisplay handleClick={handleClick} />
+        : 
+            null
         }
         </>
     )

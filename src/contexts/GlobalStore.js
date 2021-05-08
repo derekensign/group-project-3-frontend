@@ -6,6 +6,7 @@ const GlobalStore = createContext()
 const Provider = ({children}) => {
     // define values
     const [user, setUser] = useState({})
+    const [cart, setCart] = useState([])
     
     const fetchUser = () => {
         const userId = localStorage.getItem('userId')
@@ -26,10 +27,28 @@ const Provider = ({children}) => {
             })
     }
 
+    const fetchCart = () => {
+        console.log(user.id)
+        axios.get(`${process.env.REACT_APP_BACKEND}/users/cart`, {
+            headers: {
+                Authorization: user.id
+            }
+        })
+        .then(res => {
+            console.log('fetchCart res', res);
+            setCart(res.data.products)
+        })
+        .catch(error => {
+            console.error(error);
+        })
+    }
+
     // create store
     const store = {
         userState: [user, setUser],
-        fetchUser
+        fetchUser,
+        cartState: [cart, setCart],
+        fetchCart
     }
 
     // return the context with the store value
