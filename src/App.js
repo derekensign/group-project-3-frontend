@@ -10,7 +10,8 @@ import Login from './components/forms/Login'
 import Products from './views/Products'
 import ShowProduct from './views/ShowProduct'
 import Account from './views/Account'
-import Checkout from './views/Checkout';
+import Success from './views/Success'
+import Canceled from './views/Canceled'
 
 function App() {
     const { userState, fetchUser } = useContext(GlobalStore)
@@ -55,6 +56,14 @@ function App() {
 
         <Route exact path = '/products/:id'>
           <ShowProduct />
+        </Route>
+
+        <Route exact path="/success">
+          <Success />
+        </Route>
+
+        <Route exact path="/canceled">
+          <Canceled />
         </Route>
 
       </div>
