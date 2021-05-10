@@ -9,6 +9,7 @@ const OrderHistory = () => {
     const [orders, setOrders] = useState([])
 
     const parseOrder = (arr) => {
+        console.log(arr);
         let orders = arr.map(order => {
             let obj = {}
             obj.date = order.createdAt
